@@ -20,7 +20,7 @@ namespace irish_railways_api.Services.Stations {
             return new StationResource {
                 Resources = stations,
                 Links = new HateoasLink[] {
-                    new HateoasLink(StationsController.ROUTE, HateoasLink.GET_SELF, HateoasMethod.GET)
+                    HateoasLink.BuildGetLink(StationsController.ROUTE, HateoasLink.GET_SELF)
                 }
             };
         }

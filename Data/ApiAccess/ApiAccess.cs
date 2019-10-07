@@ -13,10 +13,10 @@ namespace irish_railways_api.Data.ApiAccess {
             var response = await httpClient.GetAsync(url);
 
             if (response.IsSuccessStatusCode) {
-                var serialiser = xmlReaderFactory.GetXmlSerialiser(typeof(T));
+                var serialiser = xmlReaderFactory.GetXmlSerialiser<T>();
 
                 using var reader = XmlReader.Create(await response.Content.ReadAsStreamAsync());
-                return ((IApiList<T>)serialiser.Deserialize(reader)).Items;
+                return ((IXmlNode<T>)serialiser.Deserialize(reader)).Items;
             }
 
             throw new ApiErrorException(response.StatusCode, await response.Content.ReadAsStringAsync());

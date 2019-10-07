@@ -13,9 +13,9 @@
             Rel = rel;
             Method = method.ToString();
         }
-    }
 
-    public enum HateoasMethod {
-        GET
+        public static HateoasLink BuildGetLink(string href, string rel) {
+            return new HateoasLink(href, rel, HateoasMethod.GET);
+        }
     }
 }

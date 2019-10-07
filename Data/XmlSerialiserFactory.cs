@@ -1,28 +1,15 @@
-﻿using irish_railways_api.Models;
+﻿using irish_railways_api.Data.Stations;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace irish_railways_api.Data {
     public class XmlSerialiserFactory {
-        public XmlSerializer GetXmlSerialiser(Type type) {
-            if (type == typeof(Station)) {
-                return new XmlSerializer(typeof(StationList));
-            }
+        public XmlSerializer GetXmlSerialiser<T>() {
+            var xmlSerialiserType = typeof(T).Assembly.GetTypes()
+                    .Single(t => t.GetInterfaces().Contains(typeof(IXmlNode<T>)));
 
-            throw new KeyNotFoundException();
+            return new XmlSerializer(xmlSerialiserType);
         }
-    }
-
-    //TDOD: Organise this better
-    [XmlRoot("ArrayOfObjStation", Namespace = "http://api.irishrail.ie/realtime/")]
-    public class StationList : IApiList<Station> {
-        [XmlElement("objStation")]
-        public Station[] Items { get; set; }
-    }
-
-    //TDOD: Better name
-    public interface IApiList<T> {
-        T[] Items { get; set; }
     }
 }
