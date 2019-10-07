@@ -1,5 +1,4 @@
-﻿using irish_railways_api.Data.Stations;
-using System;
+﻿using System;
 using System.Linq;
 using System.Xml.Serialization;
 

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "irish-railways-api", "irish-railways-api.csproj", "{BD5B8398-037F-4D23-9920-484D33ADC887}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "irish-railways-api.test", "..\irish-railways-api.test\irish-railways-api.test.csproj", "{49757496-9363-4C60-BA93-E51FC754BB20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "irish-railways-api.test", "irish-railways-api.test\irish-railways-api.test.csproj", "{E32994EF-BC97-4487-B6B4-984099238317}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{BD5B8398-037F-4D23-9920-484D33ADC887}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD5B8398-037F-4D23-9920-484D33ADC887}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD5B8398-037F-4D23-9920-484D33ADC887}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49757496-9363-4C60-BA93-E51FC754BB20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49757496-9363-4C60-BA93-E51FC754BB20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49757496-9363-4C60-BA93-E51FC754BB20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49757496-9363-4C60-BA93-E51FC754BB20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E32994EF-BC97-4487-B6B4-984099238317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E32994EF-BC97-4487-B6B4-984099238317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E32994EF-BC97-4487-B6B4-984099238317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E32994EF-BC97-4487-B6B4-984099238317}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
