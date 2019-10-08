@@ -5,7 +5,7 @@ using irish_railways_api.Models.Common;
 using System.Collections.Generic;
 
 namespace irish_railways_api.Services.Stations {
-    public class StationsService {
+    public class StationsService : IStationsService {
         private readonly IStationRetriever stationRetriever;
 
         public StationsService(IStationRetriever stationRetriever) {
