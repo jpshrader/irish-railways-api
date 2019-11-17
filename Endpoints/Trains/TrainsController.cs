@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace irish_railways_api.Controllers.Trains {
 	[ApiController]
 	public class TrainsController : ControllerBase {
-		public const string ROUTE = "api/trains";
+		public const string ROUTE = "/api/trains";
 		public const string ROUTE_SINGLE = ROUTE + "/{trainCode}";
 		private readonly TrainsService trainsService = new TrainsService(new TrainsRetriever(new ApiAccess<Train>()), new TrainAdapter());
 

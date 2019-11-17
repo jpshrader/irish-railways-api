@@ -17,12 +17,8 @@ namespace irish_railways_api.Endpoints.Trains.Services {
 		}
 
 		public ResourceList<TrainResource> GetTrains() {
-			return GetStationResource(trainsRetriever.GetTrains());
-		}
-
-		public ResourceList<TrainResource> GetStationResource(IEnumerable<Train> stations) {
 			return new ResourceList<TrainResource> {
-				Resources = stations.Select(trainAdapter.Adapt),
+				Resources = GetTrainResources(trainsRetriever.GetTrains()),
 				Links = new HateoasLink[] {
 					HateoasLink.BuildGetLink(TrainsController.ROUTE, HateoasLink.GET_SELF)
 				}
@@ -36,6 +32,13 @@ namespace irish_railways_api.Endpoints.Trains.Services {
 				return null;
 
 			return trainAdapter.Adapt(train);
+		}
+
+		private IEnumerable<TrainResource> GetTrainResources(IEnumerable<Train> trains) {
+			if (trains == null)
+				return Enumerable.Empty<TrainResource>();
+
+			return trains.Select(trainAdapter.Adapt);
 		}
 	}
 }

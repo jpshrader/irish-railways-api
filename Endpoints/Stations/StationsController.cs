@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace irish_railways_api.Controllers.Stations {
 	[ApiController]
 	public class StationsController : ControllerBase {
-		public const string ROUTE = "api/stations";
+		public const string ROUTE = "/api/stations";
 		public const string ROUTE_SINGLE = ROUTE + "/{stationId}";
 
 		private readonly StationsService stationsService = new StationsService(new StationRetriever(new ApiAccess<Station>()), new StationAdapter());

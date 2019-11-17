@@ -21,14 +21,18 @@ namespace irish_railways_api.Common.Resources {
 			return new HateoasLink(SpliceArgsIntoRoute(href, routeArgs), rel, HateoasMethod.GET);
 		}
 
-		public static string SpliceArgsIntoRoute(string href, params string[] routeArgs) {
+		private static string SpliceArgsIntoRoute(string href, params string[] routeArgs) {
 			if (routeArgs.Length == 0)
 				return href;
 
 			var splicedHref = "";
 			foreach (var arg in routeArgs) {
-				var isolatedArgString = href.Substring(0, href.IndexOf('}') + 1);
+				var nextRouteVar = href.IndexOf('}') + 1;
+				var isolatedArgString = href.Substring(0, nextRouteVar);
 				splicedHref = Regex.Replace(isolatedArgString, "{.*}", arg);
+
+				if (nextRouteVar != href.Length)
+					splicedHref += href.Substring(nextRouteVar, href.Length - nextRouteVar);
 			}
 
 			return splicedHref;
