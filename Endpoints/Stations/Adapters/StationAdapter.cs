@@ -15,7 +15,7 @@ namespace irish_railways_api.Endpoints.Stations.Adapters {
 				Latitude = station.StationLatitude,
 				Links = new HateoasLink[] {
 					HateoasLink.BuildGetLink(StationsController.ROUTE, HateoasLink.GET_SELF),
-					HateoasLink.BuildGetLink(StationDetailsController.ROUTE, HateoasLink.GET_SELF_DETAILED, station.StationCode)
+					HateoasLink.BuildGetLink(StationDetailsController.ROUTE, HateoasLink.GET_SELF_DETAILED, routeArgs: station.StationCode)
 				}
 			};
 		}
