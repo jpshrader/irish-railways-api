@@ -2,11 +2,11 @@
 
 namespace irish_railways_api.Endpoints.Stations.StationDetails.Models {
 	public class StationDetailsResource : Resource {
-		public string Traincode { get; set; }
-
 		public string Stationfullname { get; set; }
 
 		public string Stationcode { get; set; }
+
+		public string Traincode { get; set; }
 
 		public string Traindate { get; set; }
 

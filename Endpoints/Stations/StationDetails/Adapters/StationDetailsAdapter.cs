@@ -1,6 +1,4 @@
-﻿using irish_railways_api.Common.Resources;
-using irish_railways_api.Controllers.Stations;
-using irish_railways_api.Endpoints.Stations.StationDetails.Models;
+﻿using irish_railways_api.Endpoints.Stations.StationDetails.Models;
 
 namespace irish_railways_api.Endpoints.Stations.StationDetails.Adapters {
 	public class StationDetailsAdapter : IStationDetailsAdapter {
@@ -8,7 +6,7 @@ namespace irish_railways_api.Endpoints.Stations.StationDetails.Adapters {
 			return new StationDetailsResource {
 				Stationcode = stationData.Stationcode,
 				Stationfullname = stationData.Stationfullname,
-				Traincode = stationData.Traincode,
+				Traincode = stationData.Traincode.Trim(),
 				Origin = stationData.Origin,
 				Destination = stationData.Destination,
 				Destinationtime = stationData.Destinationtime,
@@ -22,11 +20,7 @@ namespace irish_railways_api.Endpoints.Stations.StationDetails.Adapters {
 				Origintime = stationData.Origintime,
 				Traintype = stationData.Traintype,
 				Locationtype = stationData.Locationtype,
-				StaLastlocationtus = stationData.StaLastlocationtus,
-				Links = new HateoasLink[] {
-					HateoasLink.BuildGetLink(StationDetailsController.ROUTE, HateoasLink.SELF, routeArgs: stationData.Stationfullname),
-					HateoasLink.BuildGetLink(StationsController.ROUTE_SINGLE, "station", routeArgs: stationData.Stationcode)
-				}
+				StaLastlocationtus = stationData.StaLastlocationtus
 			};
 		}
 	}

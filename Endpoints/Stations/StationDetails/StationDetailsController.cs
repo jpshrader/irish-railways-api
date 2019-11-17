@@ -13,7 +13,7 @@ namespace irish_railways_api.Endpoints.Stations.StationDetails {
 	public class StationDetailsController : ControllerBase {
 		public const string ROUTE = StationsController.ROUTE_SINGLE + "/details";
 
-		private readonly IStationDetailsService stationDetailsService = new StationDetailsService(new StationDataRetriver(new ApiAccess<StationData>()), new StationDetailsAdapter());
+		private readonly IStationDetailsService stationDetailsService = new StationDetailsService(new StationDataRetriever(new ApiAccess<StationData>()), new StationDetailsAdapter());
 
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResourceList<StationDetailsResource>))]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]

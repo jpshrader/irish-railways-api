@@ -4,12 +4,12 @@ using System;
 using System.Collections.Generic;
 
 namespace irish_railways_api.Endpoints.Stations.StationDetails.Data {
-	public class StationDataRetriver : IStationDataRetriever {
+	public class StationDataRetriever : IStationDataRetriever {
 		private const string GET_STATION_DATA = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=";
 
 		private readonly IApiAccess<StationData> apiAccess;
 
-		public StationDataRetriver(IApiAccess<StationData> apiAccess) {
+		public StationDataRetriever(IApiAccess<StationData> apiAccess) {
 			this.apiAccess = apiAccess;
 		}
 
