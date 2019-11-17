@@ -17,8 +17,8 @@ namespace irish_railways_api.Endpoints.Stations.StationDetails {
 
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResourceList<StationDetailsResource>))]
 		[HttpGet(ROUTE)]
-		public IActionResult GetDetails(string stationId) {
-			var result = stationDetailsService.GetStationDetails(stationId);
+		public IActionResult GetDetails(string stationName) {
+			var result = stationDetailsService.GetStationDetails(stationName);
 
 			return Ok(result);
 		}

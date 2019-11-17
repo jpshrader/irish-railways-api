@@ -20,7 +20,7 @@ namespace irish_railways_api.Endpoints.Trains.Services {
 			return new ResourceList<TrainResource> {
 				Resources = GetTrainResources(trainsRetriever.GetTrains()),
 				Links = new HateoasLink[] {
-					HateoasLink.BuildGetLink(TrainsController.ROUTE, HateoasLink.GET_SELF)
+					HateoasLink.BuildGetLink(TrainsController.ROUTE, HateoasLink.SELF)
 				}
 			};
 		}

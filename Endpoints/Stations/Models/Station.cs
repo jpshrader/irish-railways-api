@@ -4,7 +4,7 @@
 
 		public string StationAlias { get; set; }
 
-		public string StationLatitude { get; set; }
+		public decimal StationLatitude { get; set; }
 
 		public string StationCode { get; set; }
 

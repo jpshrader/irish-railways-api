@@ -8,7 +8,7 @@ namespace irish_railways_api.Endpoints.Stations.Models {
 
 		public string Alias { get; set; }
 
-		public string Latitude { get; set; }
+		public decimal Latitude { get; set; }
 
 		public string Code { get; set; }
 	}

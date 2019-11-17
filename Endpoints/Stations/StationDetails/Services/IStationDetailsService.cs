@@ -3,6 +3,6 @@ using irish_railways_api.Endpoints.Stations.StationDetails.Models;
 
 namespace irish_railways_api.Endpoints.Stations.StationDetails.Services {
 	public interface IStationDetailsService {
-		ResourceList<StationDetailsResource> GetStationDetails(string stationId);
+		ResourceList<StationDetailsResource> GetStationDetails(string stationName);
 	}
 }

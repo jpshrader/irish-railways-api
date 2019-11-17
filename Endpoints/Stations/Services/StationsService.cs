@@ -21,13 +21,13 @@ namespace irish_railways_api.Endpoints.Stations.Services {
 			return new ResourceList<StationResource> {
 				Resources = GetStationResources(stationRetriever.GetStations()),
 				Links = new HateoasLink[] {
-					HateoasLink.BuildGetLink(StationsController.ROUTE, HateoasLink.GET_SELF)
+					HateoasLink.BuildGetLink(StationsController.ROUTE, HateoasLink.SELF)
 				}
 			};
 		}
 
-		public StationResource GetStation(string stationId) {
-			var station = stationRetriever.GetStations().SingleOrDefault(s => s.StationId == stationId);
+		public StationResource GetStation(string stationName) {
+			var station = stationRetriever.GetStations().SingleOrDefault(s => s.StationDesc == stationName);
 
 			if (station == null)
 				return null;

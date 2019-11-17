@@ -16,12 +16,12 @@ namespace irish_railways_api.Endpoints.Stations.StationDetails.Services {
 			this.detailsAdapter = detailsAdapter;
 		}
 
-		public ResourceList<StationDetailsResource> GetStationDetails(string stationId) {
+		public ResourceList<StationDetailsResource> GetStationDetails(string stationName) {
 			return new ResourceList<StationDetailsResource> {
-				Resources = GetStationDetailsResources(stationDataRetriever.GetStationData(stationId)),
+				Resources = GetStationDetailsResources(stationDataRetriever.GetStationData(stationName)),
 				Links = new HateoasLink[] {
-					HateoasLink.BuildGetLink(StationDetailsController.ROUTE, HateoasLink.GET_SELF, routeArgs: stationId),
-					HateoasLink.BuildGetLink(StationsController.ROUTE_SINGLE, "station", routeArgs: stationId)
+					HateoasLink.BuildGetLink(StationDetailsController.ROUTE, HateoasLink.SELF, routeArgs: stationName),
+					HateoasLink.BuildGetLink(StationsController.ROUTE_SINGLE, "station", routeArgs: stationName)
 				}
 			};
 		}
