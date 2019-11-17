@@ -1,5 +1,5 @@
-﻿namespace irish_railways_api.Endpoints.Trains.Models {
-	public class TrainMovements {
+﻿namespace irish_railways_api.Endpoints.Trains.TrainMovements.Models {
+	public class TrainMovement {
 		public string TrainCode { get; set; }
 
 		public string TrainDate { get; set; }

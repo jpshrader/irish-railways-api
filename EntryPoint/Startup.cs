@@ -21,7 +21,7 @@ namespace irish_railways_api.EntryPoint {
 				c.SwaggerDoc("v1", new OpenApiInfo {
 					Version = "v1",
 					Title = "Irish Railways Api",
-					Description = "",
+					Description = "REST Api for pulling various pieces of information from the Irish Realtime Railway Api",
 				});
 			});
 		}
