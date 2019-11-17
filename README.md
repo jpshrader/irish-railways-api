@@ -3,16 +3,16 @@
 # Irish Railways REST Api
 This REST api based off of the [Irish Rail Realtime API](http://api.irishrail.ie/realtime).
 
-# Local Development
+## Local Development
 
 
-## Building the App
+### Building the App
 
 In order to hit the local api, navigate to: `http://localhost:5000/`
  * Ex. `http://localhost:5000/api/stations/`
 
 
-## Viewing Swagger
+### Viewing Swagger
 
 In order to hit swagger on the local api, navigate to: `http://localhost:5000/swagger/ui/index.html#/`
 
