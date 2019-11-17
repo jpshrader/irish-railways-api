@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace irish_railways_api.Endpoints.Stations.StationDetails.Models {
+﻿namespace irish_railways_api.Endpoints.Stations.StationDetails.Models {
 	public class StationData {
 		public string ServerTime { get; set; }
 
 		public string Traincode { get; set; }
-		
+
 		public string Stationfullname { get; set; }
-		
+
 		public string Stationcode { get; set; }
-		
+
 		public string Querytime { get; set; }
 
 		public string Traindate { get; set; }

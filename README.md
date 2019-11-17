@@ -2,3 +2,5 @@
 
 # irish-railways-api
 This is the backend for my irish railways app.
+
+Based off of the [Irish Rail Realtime API](http://api.irishrail.ie/realtime)

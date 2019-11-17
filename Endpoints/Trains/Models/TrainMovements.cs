@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace irish_railways_api.Endpoints.Trains.Models {
+﻿namespace irish_railways_api.Endpoints.Trains.Models {
 	public class TrainMovements {
 		public string TrainCode { get; set; }
 
