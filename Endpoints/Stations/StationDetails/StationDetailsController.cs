@@ -16,9 +16,13 @@ namespace irish_railways_api.Endpoints.Stations.StationDetails {
 		private readonly IStationDetailsService stationDetailsService = new StationDetailsService(new StationDataRetriver(new ApiAccess<StationData>()), new StationDetailsAdapter());
 
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResourceList<StationDetailsResource>))]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[HttpGet(ROUTE)]
 		public IActionResult GetDetails(string stationName) {
 			var result = stationDetailsService.GetStationDetails(stationName);
+
+			if (result == null)
+				return NotFound();
 
 			return Ok(result);
 		}

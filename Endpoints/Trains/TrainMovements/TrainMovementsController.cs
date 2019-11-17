@@ -15,6 +15,7 @@ namespace irish_railways_api.Endpoints.Trains.TrainMovements {
 		private readonly ITrainMovementService movementService = new TrainMovementService(new TrainMovementRetriever(new ApiAccess<TrainMovement>()), new TrainMovementAdapter());
 
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResourceList<TrainMovementResource>))]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[HttpGet(ROUTE)]
 		public IActionResult GetTrainMovements(string trainCode) {
 			var result = movementService.GetTrainMovements(trainCode);
