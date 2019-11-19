@@ -1,10 +1,10 @@
 ﻿using irish_railways_api.Common.Access;
 using irish_railways_api.Common.Resources;
 using irish_railways_api.Controllers.Stations;
-using irish_railways_api.Endpoints.Stations.StationDetails.Adapters;
-using irish_railways_api.Endpoints.Stations.StationDetails.Data;
-using irish_railways_api.Endpoints.Stations.StationDetails.Models;
-using irish_railways_api.Endpoints.Stations.StationDetails.Services;
+using irish_railways_api.Endpoints.StationDetails.Adapters;
+using irish_railways_api.Endpoints.StationDetails.Data;
+using irish_railways_api.Endpoints.StationDetails.Models;
+using irish_railways_api.Endpoints.StationDetails.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

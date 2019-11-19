@@ -1,6 +1,6 @@
-﻿using irish_railways_api.Endpoints.Stations.StationDetails.Models;
+﻿using irish_railways_api.Endpoints.StationDetails.Models;
 
-namespace irish_railways_api.Endpoints.Stations.StationDetails.Adapters {
+namespace irish_railways_api.Endpoints.StationDetails.Adapters {
 	public class StationDetailsAdapter : IStationDetailsAdapter {
 		public StationDetailsResource Adapt(StationData stationData) {
 			return new StationDetailsResource {

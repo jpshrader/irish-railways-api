@@ -1,12 +1,13 @@
 ﻿using irish_railways_api.Common.Resources;
 using irish_railways_api.Controllers.Stations;
-using irish_railways_api.Endpoints.Stations.StationDetails.Adapters;
-using irish_railways_api.Endpoints.Stations.StationDetails.Data;
-using irish_railways_api.Endpoints.Stations.StationDetails.Models;
+using irish_railways_api.Endpoints.StationDetails.Adapters;
+using irish_railways_api.Endpoints.StationDetails.Data;
+using irish_railways_api.Endpoints.StationDetails.Models;
+using irish_railways_api.Endpoints.Stations.StationDetails;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace irish_railways_api.Endpoints.Stations.StationDetails.Services {
+namespace irish_railways_api.Endpoints.StationDetails.Services {
 	public class StationDetailsService : IStationDetailsService {
 		private readonly IStationDataRetriever stationDataRetriever;
 		private readonly IStationDetailsAdapter detailsAdapter;

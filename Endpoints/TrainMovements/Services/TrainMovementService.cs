@@ -1,12 +1,12 @@
 ﻿using irish_railways_api.Common.Resources;
 using irish_railways_api.Controllers.Trains;
-using irish_railways_api.Endpoints.Trains.TrainMovements.Adapters;
-using irish_railways_api.Endpoints.Trains.TrainMovements.Data;
-using irish_railways_api.Endpoints.Trains.TrainMovements.Models;
+using irish_railways_api.Endpoints.TrainMovements.Adapters;
+using irish_railways_api.Endpoints.TrainMovements.Data;
+using irish_railways_api.Endpoints.TrainMovements.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace irish_railways_api.Endpoints.Trains.TrainMovements.Services {
+namespace irish_railways_api.Endpoints.TrainMovements.Services {
 	public class TrainMovementService : ITrainMovementService {
 		private readonly ITrainMovementRetriever movementRetriever;
 		private readonly ITrainMovementAdapter trainMovementAdapter;

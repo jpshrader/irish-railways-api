@@ -1,6 +1,6 @@
-﻿using irish_railways_api.Endpoints.Trains.TrainMovements.Models;
+﻿using irish_railways_api.Endpoints.TrainMovements.Models;
 
-namespace irish_railways_api.Endpoints.Trains.TrainMovements.Adapters {
+namespace irish_railways_api.Endpoints.TrainMovements.Adapters {
 	public class TrainMovementAdapter : ITrainMovementAdapter {
 		public TrainMovementResource Adapt(TrainMovement trainMovement) {
 			return new TrainMovementResource {

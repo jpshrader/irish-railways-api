@@ -1,6 +1,6 @@
 ﻿using irish_railways_api.Common.Resources;
 
-namespace irish_railways_api.Endpoints.Stations.StationDetails.Models {
+namespace irish_railways_api.Endpoints.StationDetails.Models {
 	public class StationDetailsResource : Resource {
 		public string Stationfullname { get; set; }
 

@@ -1,5 +1,7 @@
-﻿namespace irish_railways_api.Endpoints.Trains.TrainMovements.Models {
-	public class TrainMovement {
+﻿using irish_railways_api.Common.Resources;
+
+namespace irish_railways_api.Endpoints.TrainMovements.Models {
+	public class TrainMovementResource : Resource {
 		public string TrainCode { get; set; }
 
 		public string TrainDate { get; set; }
