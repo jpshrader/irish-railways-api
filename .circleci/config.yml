@@ -29,11 +29,11 @@ jobs:
 
       - run:
           name: "Test the executable"
-          command: .\bin\Release\netcoreapp2.1\win10-x64\publish\irish-railways-api.exe
+          command: .\bin\Release\netcoreapp3.0\win10-x64\publish\irish-railways-api.exe
 
       - run: 
           name: "Run Tests"
           command: dotnet.exe test --no-build irish-railways-api.test.csproj
 
       - store_artifacts:
-          path: .\bin\Release\netcoreapp2.1\win10-x64\publish\irish-railways-api.exe
+          path: .\bin\Release\netcoreapp3.0\win10-x64\publish\irish-railways-api.exe
