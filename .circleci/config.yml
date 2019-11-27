@@ -27,10 +27,6 @@ jobs:
           name: "Run Build step"
           command: dotnet.exe publish -c Release -r win10-x64
 
-      - run:
-          name: "Test the executable"
-          command: .\bin\Release\netcoreapp3.0\win10-x64\publish\irish-railways-api.exe
-
       - run: 
           name: "Run Tests"
           command: dotnet.exe test --no-build irish-railways-api.test.csproj
