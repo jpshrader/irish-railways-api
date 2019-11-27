@@ -1,4 +1,5 @@
 [![Build Status](https://dev.azure.com/johnshrader/irish-railways-api/_apis/build/status/jpshrader.irish-railways-api?branchName=master)](https://dev.azure.com/johnshrader/irish-railways-api/_build/latest?definitionId=1&branchName=master)
+[![CircleCI](https://circleci.com/gh/jpshrader/irish-railways-api.svg?style=svg)](https://circleci.com/gh/jpshrader/irish-railways-api)
 
 # Irish Railways REST Api
 This REST api is based off of the [Irish Rail Realtime API](http://api.irishrail.ie/realtime).
