@@ -27,4 +27,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include=".azurepipelines\build.yml" />
+    <None Include=".circleci\config.yml" />
+  </ItemGroup>
+
 </Project>
