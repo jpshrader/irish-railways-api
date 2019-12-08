@@ -2,11 +2,11 @@
 
 namespace irish_railways_api.Endpoints.StationDetails.Models {
 	public class StationDetailsResource : Resource {
-		public string Stationfullname { get; set; }
+		public string StationFullName { get; set; }
 
-		public string Stationcode { get; set; }
+		public string StationCode { get; set; }
 
-		public string Traincode { get; set; }
+		public string TrainCode { get; set; }
 
 		public string Traindate { get; set; }
 
@@ -14,26 +14,26 @@ namespace irish_railways_api.Endpoints.StationDetails.Models {
 
 		public string Destination { get; set; }
 
-		public string Origintime { get; set; }
+		public string OriginTime { get; set; }
 
-		public string Destinationtime { get; set; }
+		public string DestinationTime { get; set; }
 
-		public string StaLastlocationtus { get; set; }
+		public string StaLastLocationTus { get; set; }
 
-		public int Duein { get; set; }
+		public int DueIn { get; set; }
 
 		public int Late { get; set; }
 
-		public string Exparrival { get; set; }
+		public string ExpectedArrival { get; set; }
 
-		public string Expdepart { get; set; }
+		public string ExpectedDeparture { get; set; }
 
-		public string Scharrival { get; set; }
+		public string ScheduledArrival { get; set; }
 
-		public string Schdepart { get; set; }
+		public string ScheduledDeparture { get; set; }
 
-		public string Traintype { get; set; }
+		public string TrainType { get; set; }
 
-		public string Locationtype { get; set; }
+		public string LocationType { get; set; }
 	}
 }

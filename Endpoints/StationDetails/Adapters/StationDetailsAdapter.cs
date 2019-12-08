@@ -4,23 +4,23 @@ namespace irish_railways_api.Endpoints.StationDetails.Adapters {
 	public class StationDetailsAdapter : IStationDetailsAdapter {
 		public StationDetailsResource Adapt(StationData stationData) {
 			return new StationDetailsResource {
-				Stationcode = stationData.Stationcode,
-				Stationfullname = stationData.Stationfullname,
-				Traincode = stationData.Traincode.Trim(),
+				StationCode = stationData.Stationcode,
+				StationFullName = stationData.Stationfullname,
+				TrainCode = stationData.Traincode.Trim(),
 				Origin = stationData.Origin,
 				Destination = stationData.Destination,
-				Destinationtime = stationData.Destinationtime,
-				Duein = stationData.Duein,
+				DestinationTime = stationData.Destinationtime,
+				DueIn = stationData.Duein,
 				Late = stationData.Late,
-				Schdepart = stationData.Schdepart,
-				Scharrival = stationData.Scharrival,
-				Expdepart = stationData.Expdepart,
-				Exparrival = stationData.Exparrival,
+				ScheduledDeparture = stationData.Schdepart,
+				ScheduledArrival = stationData.Scharrival,
+				ExpectedDeparture = stationData.Expdepart,
+				ExpectedArrival = stationData.Exparrival,
 				Traindate = stationData.Traindate,
-				Origintime = stationData.Origintime,
-				Traintype = stationData.Traintype,
-				Locationtype = stationData.Locationtype,
-				StaLastlocationtus = stationData.StaLastlocationtus
+				OriginTime = stationData.Origintime,
+				TrainType = stationData.Traintype,
+				LocationType = stationData.Locationtype,
+				StaLastLocationTus = stationData.StaLastlocationtus
 			};
 		}
 	}
