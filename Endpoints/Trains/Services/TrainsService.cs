@@ -26,7 +26,7 @@ namespace irish_railways_api.Endpoints.Trains.Services {
 		}
 
 		public TrainResource GetTrain(string trainCode) {
-			var train = trainsRetriever.GetTrains().SingleOrDefault(t => t.TrainCode == trainCode);
+			var train = trainsRetriever.GetTrains().FirstOrDefault(t => t.TrainCode == trainCode);
 
 			if (train == null)
 				return null;

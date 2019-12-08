@@ -27,7 +27,7 @@ namespace irish_railways_api.Endpoints.Stations.Services {
 		}
 
 		public StationResource GetStation(string stationName) {
-			var station = stationRetriever.GetStations().SingleOrDefault(s => s.StationDesc == stationName);
+			var station = stationRetriever.GetStations().FirstOrDefault(s => s.StationDesc == stationName);
 
 			if (station == null)
 				return null;
