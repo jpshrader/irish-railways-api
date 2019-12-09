@@ -12,7 +12,11 @@ namespace irish_railways_api.Controllers.Trains.Models {
 
 		public string Date { get; set; }
 
-		public string PublicMessage { get; set; }
+		public string Origin { get; set; }
+
+		public string Destination { get; set; }
+
+		public string Message { get; set; }
 
 		public string Direction { get; set; }
 	}

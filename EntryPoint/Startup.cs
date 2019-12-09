@@ -7,6 +7,8 @@ using Microsoft.OpenApi.Models;
 
 namespace irish_railways_api.EntryPoint {
 	public class Startup {
+		private const string CORS_POLICY = "CorsPolicy";
+
 		public Startup(IConfiguration configuration) {
 			Configuration = configuration;
 		}
@@ -16,6 +18,13 @@ namespace irish_railways_api.EntryPoint {
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public static void ConfigureServices(IServiceCollection services) {
 			services.AddControllers();
+
+			services.AddCors(o => o.AddPolicy(CORS_POLICY, builder =>
+			{
+				builder.AllowAnyOrigin()
+					   .AllowAnyMethod()
+					   .AllowAnyHeader();
+			}));
 
 			services.AddSwaggerGen(c => {
 				c.SwaggerDoc("v1", new OpenApiInfo {
@@ -34,6 +43,7 @@ namespace irish_railways_api.EntryPoint {
 
 			app.UseHttpsRedirection();
 			app.UseRouting();
+			app.UseCors(CORS_POLICY);
 			app.UseAuthorization();
 			app.UseEndpoints(endpoints => {
 				endpoints.MapControllers();
