@@ -12,6 +12,8 @@ namespace irish_railways_api.Endpoints.StationDetails.Services {
 		private readonly IStationDataRetriever stationDataRetriever;
 		private readonly IStationDetailsAdapter detailsAdapter;
 
+		public StationDetailsService() : this(new StationDataRetriever(), new StationDetailsAdapter()) { }
+
 		public StationDetailsService(IStationDataRetriever stationDataRetriever, IStationDetailsAdapter detailsAdapter) {
 			this.stationDataRetriever = stationDataRetriever;
 			this.detailsAdapter = detailsAdapter;

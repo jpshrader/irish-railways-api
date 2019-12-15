@@ -9,6 +9,8 @@ namespace irish_railways_api.Endpoints.StationDetails.Data {
 
 		private readonly IApiAccess<StationData> apiAccess;
 
+		public StationDataRetriever() : this(new ApiAccess<StationData>()) { }
+
 		public StationDataRetriever(IApiAccess<StationData> apiAccess) {
 			this.apiAccess = apiAccess;
 		}

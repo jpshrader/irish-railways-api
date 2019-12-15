@@ -11,6 +11,8 @@ namespace irish_railways_api.Endpoints.TrainMovements.Services {
 		private readonly ITrainMovementRetriever movementRetriever;
 		private readonly ITrainMovementAdapter trainMovementAdapter;
 
+		public TrainMovementService() : this(new TrainMovementRetriever(), new TrainMovementAdapter()) { }
+
 		public TrainMovementService(ITrainMovementRetriever movementRetriever, ITrainMovementAdapter trainMovementAdapter) {
 			this.movementRetriever = movementRetriever;
 			this.trainMovementAdapter = trainMovementAdapter;

@@ -19,8 +19,7 @@ namespace irish_railways_api.EntryPoint {
 		public static void ConfigureServices(IServiceCollection services) {
 			services.AddControllers();
 
-			services.AddCors(o => o.AddPolicy(CORS_POLICY, builder =>
-			{
+			services.AddCors(o => o.AddPolicy(CORS_POLICY, builder => {
 				builder.AllowAnyOrigin()
 					   .AllowAnyMethod()
 					   .AllowAnyHeader();

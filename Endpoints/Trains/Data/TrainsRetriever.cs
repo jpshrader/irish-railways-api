@@ -9,6 +9,8 @@ namespace irish_railways_api.Trains.Data {
 
 		private readonly IApiAccess<Train> apiAccess;
 
+		public TrainsRetriever() : this(new ApiAccess<Train>()) { }
+
 		public TrainsRetriever(IApiAccess<Train> apiAccess) {
 			this.apiAccess = apiAccess;
 		}

@@ -1,5 +1,6 @@
 ﻿using irish_railways_api.Common.Resources;
 using irish_railways_api.Controllers.Stations;
+using irish_railways_api.Data.Stations;
 using irish_railways_api.Endpoints.Stations.Adapters;
 using irish_railways_api.Endpoints.Stations.Data;
 using irish_railways_api.Endpoints.Stations.Models;
@@ -11,6 +12,8 @@ namespace irish_railways_api.Endpoints.Stations.Services {
 	public class StationsService : IStationsService {
 		private readonly IStationRetriever stationRetriever;
 		private readonly IStationAdapter stationAdapter;
+
+		public StationsService() : this(new StationRetriever(), new StationAdapter()) { }
 
 		public StationsService(IStationRetriever stationRetriever, IStationAdapter stationAdapter) {
 			this.stationRetriever = stationRetriever;
