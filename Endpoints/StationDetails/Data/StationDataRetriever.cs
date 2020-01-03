@@ -16,7 +16,7 @@ namespace irish_railways_api.Endpoints.StationDetails.Data {
 		}
 
 		public IEnumerable<StationData> GetStationData(string stationId) {
-			return apiAccess.GetResources(new Uri(GET_STATION_DATA + stationId)).Result;
+			return apiAccess.GetResources(new Uri(GET_STATION_DATA + stationId));
 		}
 	}
 }

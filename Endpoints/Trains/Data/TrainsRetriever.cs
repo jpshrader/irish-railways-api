@@ -16,7 +16,7 @@ namespace irish_railways_api.Trains.Data {
 		}
 
 		public IEnumerable<Train> GetTrains() {
-			return apiAccess.GetResources(new Uri(GET_CURRENT_TRAINS_URL)).Result;
+			return apiAccess.GetResources(new Uri(GET_CURRENT_TRAINS_URL));
 		}
 	}
 }

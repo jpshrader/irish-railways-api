@@ -16,7 +16,7 @@ namespace irish_railways_api.Endpoints.TrainMovements.Data {
 
 		public IEnumerable<TrainMovement> GetTrainMovements(string trainCode) {
 			var today = DateTime.UtcNow.ToString("dd-MM-yyyy");
-			return apiAccess.GetResources(new Uri($"{GET_MOVEMENT_URL + trainCode}&TrainDate={today}")).Result;
+			return apiAccess.GetResources(new Uri($"{GET_MOVEMENT_URL + trainCode}&TrainDate={today}"));
 		}
 	}
 }

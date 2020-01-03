@@ -2,12 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace irish_railways_api.Common.Access {
 	public class ApiAccess<T> : IApiAccess<T> {
-		public async Task<IEnumerable<T>> GetResources(Uri uri) {
+		public IEnumerable<T> GetResources(Uri uri) {
 			// TODO: Call out to Singleton Store, and pass Uri. If not null, return.
 			var requestEntry = uri as IEnumerable<T>;
 			if (requestEntry != null) {
@@ -15,16 +14,20 @@ namespace irish_railways_api.Common.Access {
 			}
 
 			using var httpClient = new HttpClient();
-			var response = await httpClient.GetAsync(uri);
+			var response = httpClient.GetAsync(uri).Result;
 
 			if (response.IsSuccessStatusCode) {
 				var serialiser = XmlSerialiserFactory.GetXmlSerialiser<T>();
 
-				using var reader = XmlReader.Create(await response.Content.ReadAsStreamAsync());
-				return ((IXmlNode<T>)serialiser.Deserialize(reader)).Items;
+				using var reader = XmlReader.Create(response.Content.ReadAsStreamAsync().Result);
+				var result = ((IXmlNode<T>)serialiser.Deserialize(reader)).Items;
+
+				// TODO: Save result to store
+
+				return result;
 			}
 
-			throw new ApiErrorException(response.StatusCode, await response.Content.ReadAsStringAsync());
+			throw new ApiErrorException(response.StatusCode, response.Content.ReadAsStringAsync().Result);
 		}
 	}
 }

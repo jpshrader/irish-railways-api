@@ -12,11 +12,11 @@ namespace irish_railways_api.Common.Access.RequestStore {
 			apiRequestStore = new Dictionary<Uri, ApiStoreItem<Resource>>();
 		}
 
-		public T Retrieve<T>(Uri url) where T : Resource {
+		public IEnumerable<T> Retrieve<T>(Uri url) where T : Resource {
 			if (apiRequestStore.ContainsKey(url)) {
 				var entry = apiRequestStore[url];
 				if (!entry.IsExpired(storeRetentionLimit)) {
-					return entry.Item as T;
+					return entry.Item as IEnumerable<T>;
 				} else {
 					apiRequestStore.Remove(url);
 				}
