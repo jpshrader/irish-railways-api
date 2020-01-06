@@ -1,4 +1,5 @@
 ﻿using irish_railways_api.Common.Xml;
+using irish_railways_api.EntryPoint;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -7,11 +8,9 @@ using System.Xml;
 namespace irish_railways_api.Common.Access {
 	public class ApiAccess<T> : IApiAccess<T> {
 		public IEnumerable<T> GetResources(Uri uri) {
-			// TODO: Call out to Singleton Store, and pass Uri. If not null, return.
-			var requestEntry = uri as IEnumerable<T>;
-			if (requestEntry != null) {
-				return requestEntry;
-			}
+			var requestStoreEntry = ApiRequestStoreSession.Store.Retrieve<T>(uri);
+			if (requestStoreEntry != null)
+				return requestStoreEntry;
 
 			using var httpClient = new HttpClient();
 			var response = httpClient.GetAsync(uri).Result;
@@ -22,7 +21,7 @@ namespace irish_railways_api.Common.Access {
 				using var reader = XmlReader.Create(response.Content.ReadAsStreamAsync().Result);
 				var result = ((IXmlNode<T>)serialiser.Deserialize(reader)).Items;
 
-				// TODO: Save result to store
+				ApiRequestStoreSession.Store.Save(uri, result as object[]);
 
 				return result;
 			}

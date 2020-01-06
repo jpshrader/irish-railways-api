@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 
 namespace irish_railways_api.Common.Access.RequestStore {
-	public class ApiStoreItem<T> where T : Resource {
-		public IEnumerable<T> Item { get; set; }
+	public class ApiStoreItem {
+		public IEnumerable<object> Item { get; set; }
 
 		private readonly DateTime entryTime;
 
-		public ApiStoreItem(IEnumerable<T> item) {
+		public ApiStoreItem(IEnumerable<object> item) {
 			Item = item;
 			entryTime = DateTime.UtcNow;
 		}

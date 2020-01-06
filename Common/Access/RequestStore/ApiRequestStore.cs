@@ -4,25 +4,34 @@ using System.Collections.Generic;
 
 namespace irish_railways_api.Common.Access.RequestStore {
 	public class ApiRequestStore : IApiRequestStore {
-		private readonly Dictionary<Uri, ApiStoreItem<Resource>> apiRequestStore;
+		private readonly Dictionary<Uri, ApiStoreItem> apiRequestStore;
 		private readonly int storeRetentionLimit;
 
 		public ApiRequestStore(int storeRetentionLimit) {
 			this.storeRetentionLimit = storeRetentionLimit;
-			apiRequestStore = new Dictionary<Uri, ApiStoreItem<Resource>>();
+			apiRequestStore = new Dictionary<Uri, ApiStoreItem>();
 		}
 
-		public IEnumerable<T> Retrieve<T>(Uri url) where T : Resource {
-			if (apiRequestStore.ContainsKey(url)) {
-				var entry = apiRequestStore[url];
+		public IEnumerable<T> Retrieve<T>(Uri uri) {
+			if (apiRequestStore.ContainsKey(uri)) {
+				var entry = apiRequestStore[uri];
 				if (!entry.IsExpired(storeRetentionLimit)) {
 					return entry.Item as IEnumerable<T>;
 				} else {
-					apiRequestStore.Remove(url);
+					apiRequestStore.Remove(uri);
 				}
 			}
 
 			return null;
+		}
+
+		public void Save(Uri uri, IEnumerable<object> result) {
+			var storeItem = new ApiStoreItem(result);
+			if (apiRequestStore.ContainsKey(uri)) {
+				apiRequestStore[uri] = storeItem;
+			} else {
+				apiRequestStore.Add(uri, storeItem);
+			}
 		}
 	}
 }
