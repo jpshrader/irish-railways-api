@@ -5,7 +5,6 @@
 This REST api is based off of the [Irish Rail Realtime API](http://api.irishrail.ie/realtime).
 
 Future Enhancements:
- * Implement caching layer so this doesn't cause any unnecessary burden on their servers.
  * Add query string support to existing endpoints.
 
 ## Local Development
