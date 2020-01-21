@@ -35,7 +35,7 @@ namespace irish_railways_api.EntryPoint {
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public static void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
 			if (env.IsDevelopment()) {
 				app.UseDeveloperExceptionPage();
 			}
@@ -53,6 +53,10 @@ namespace irish_railways_api.EntryPoint {
 				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Irish Railways Api");
 				c.RoutePrefix = string.Empty;
 			});
+
+			var cacheConfig = Configuration.GetSection("Caching");
+			ApiRequestStoreSession.isEnabled = cacheConfig.GetValue<bool>("IsEnabled");
+			ApiRequestStoreSession.RetentionPolicy = cacheConfig.GetValue<int>("RetentionPolicy");
 		}
 	}
 }
