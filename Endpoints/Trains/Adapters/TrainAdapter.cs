@@ -9,7 +9,7 @@ namespace irish_railways_api.Endpoints.Trains.Adapters {
 		public TrainResource Adapt(Train train) {
 			return new TrainResource {
 				Code = train.TrainCode,
-				Status = train.TrainStatus,
+				Status = GetTrainStatus(train.TrainStatus),
 				Direction = train.Direction.Replace("To", "Towards"),
 				Date = train.TrainDate,
 				Latitude = train.TrainLatitude,
@@ -38,6 +38,18 @@ namespace irish_railways_api.Endpoints.Trains.Adapters {
 
 		private static string GetContextFromMessage(string publicMessage) {
 			return publicMessage.Substring(publicMessage.LastIndexOf(API_NEWLINE) + API_NEWLINE.Length).Trim();
+		}
+
+		private static string GetTrainStatus(string status) {
+			if (status == "R") {
+				return "Running";
+			} else if (status == "N") {
+				return "Stopped";
+			} else if (status == "T") {
+				return "Terminated";
+			} else {
+				return status;
+			}
 		}
 	}
 }
