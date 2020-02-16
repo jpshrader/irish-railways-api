@@ -1,4 +1,6 @@
 ﻿using irish_railways_api.Common.Resources;
+using irish_railways_api.Endpoints.TrainMovements.Models;
+using System.Collections.Generic;
 
 namespace irish_railways_api.Controllers.Trains.Models {
 	public class TrainResource : Resource {
@@ -19,5 +21,7 @@ namespace irish_railways_api.Controllers.Trains.Models {
 		public string Message { get; set; }
 
 		public string Direction { get; set; }
+
+		public IEnumerable<TrainMovement> Movements { get; set; }
 	}
 }

@@ -1,12 +1,14 @@
 ﻿using irish_railways_api.Common.Resources;
 using irish_railways_api.Controllers.Trains;
 using irish_railways_api.Controllers.Trains.Models;
+using irish_railways_api.Endpoints.TrainMovements.Models;
+using System.Collections.Generic;
 
 namespace irish_railways_api.Endpoints.Trains.Adapters {
 	public class TrainAdapter : ITrainAdapter {
 		private const string API_NEWLINE = "\\n";
 
-		public TrainResource Adapt(Train train) {
+		public TrainResource Adapt(Train train, IEnumerable<TrainMovement> trainMovements) {
 			return new TrainResource {
 				Code = train.TrainCode,
 				Status = GetTrainStatus(train.TrainStatus),
@@ -17,6 +19,7 @@ namespace irish_railways_api.Endpoints.Trains.Adapters {
 				Origin = GetOriginStationFromMessage(train.PublicMessage),
 				Destination = GetDestinationFromMessage(train.PublicMessage),
 				Message = GetContextFromMessage(train.PublicMessage),
+				Movements = trainMovements,
 				Links = new HateoasLink[] {
 					HateoasLink.BuildGetLink(TrainsController.ROUTE_SINGLE, HateoasLink.SELF, routeArgs: train.TrainCode)
 				}
