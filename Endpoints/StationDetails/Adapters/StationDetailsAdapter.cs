@@ -19,8 +19,19 @@ namespace irish_railways_api.Endpoints.StationDetails.Adapters {
 				Traindate = stationData.Traindate,
 				OriginTime = stationData.Origintime,
 				TrainType = stationData.Traintype,
-				LocationType = stationData.Locationtype,
+				LocationType = GetLocationTypeString(stationData.Locationtype),
 				StaLastLocationTus = stationData.StaLastlocationtus
+			};
+		}
+
+		private static string GetLocationTypeString(string locationType) {
+			return locationType switch
+			{
+				"S" => "Stop",
+				"O" => "Origin",
+				"D" => "Destination",
+				"T" => "Timing",
+				_ => locationType,
 			};
 		}
 	}

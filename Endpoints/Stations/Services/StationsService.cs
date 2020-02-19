@@ -42,7 +42,7 @@ namespace irish_railways_api.Endpoints.Stations.Services {
 			if (stations == null)
 				return Enumerable.Empty<StationResource>();
 
-			return stations.Select(stationAdapter.Adapt);
+			return stations.Select(stationAdapter.Adapt).OrderBy(s => s.Name);
 		}
 	}
 }
