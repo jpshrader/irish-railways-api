@@ -1,14 +1,12 @@
 ﻿using irish_railways_api.Common.Resources;
 using irish_railways_api.Controllers.Trains;
 using irish_railways_api.Controllers.Trains.Models;
-using irish_railways_api.Endpoints.TrainMovements.Models;
-using System.Collections.Generic;
 
 namespace irish_railways_api.Endpoints.Trains.Adapters {
 	public class TrainAdapter : ITrainAdapter {
 		private const string API_NEWLINE = "\\n";
 
-		public TrainResource Adapt(Train train, IEnumerable<TrainMovement> trainMovements) {
+		public TrainResource Adapt(Train train) {
 			return new TrainResource {
 				Code = train.TrainCode,
 				Status = GetTrainStatus(train.TrainStatus),
@@ -19,7 +17,7 @@ namespace irish_railways_api.Endpoints.Trains.Adapters {
 				Origin = GetOriginStationFromMessage(train.PublicMessage),
 				Destination = GetDestinationFromMessage(train.PublicMessage),
 				Message = GetContextFromMessage(train.PublicMessage),
-				Movements = trainMovements,
+				MinutesLate = GetTimeDeltaFromMessage(train.PublicMessage),
 				Links = new HateoasLink[] {
 					HateoasLink.BuildGetLink(TrainsController.ROUTE_SINGLE, HateoasLink.SELF, routeArgs: train.TrainCode)
 				}
@@ -35,8 +33,25 @@ namespace irish_railways_api.Endpoints.Trains.Adapters {
 
 		private static string GetDestinationFromMessage(string publicMessage) {
 			var destination = publicMessage.Split(API_NEWLINE)[1];
+			destination = destination.Substring(destination.LastIndexOf("to ") + 3);
 
-			return destination.Substring(destination.LastIndexOf("to ") + 3).Trim();
+			if (destination.Contains('('))
+				destination = destination.Substring(0, destination.IndexOf('('));
+
+			return destination.Trim();
+		}
+
+		private static int GetTimeDeltaFromMessage(string publicMessage) {
+			var destination = publicMessage.Split(API_NEWLINE)[1];
+
+			if (!destination.Contains('('))
+				return 0;
+
+			var startOfLateMessage = destination.IndexOf('(') + 1;
+			destination = destination.Substring(startOfLateMessage, destination.IndexOf("min") - startOfLateMessage);
+
+			var isInt = int.TryParse(destination.Trim(), out var delta);
+			return isInt ? delta : 0;
 		}
 
 		private static string GetContextFromMessage(string publicMessage) {

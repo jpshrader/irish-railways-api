@@ -9,7 +9,7 @@ namespace irish_railways_api.Endpoints.TrainMovements.Adapters {
 				LocationCode = trainMovement.LocationCode,
 				LocationFullName = trainMovement.LocationFullName,
 				LocationOrder = trainMovement.LocationOrder,
-				LocationType = trainMovement.LocationType,
+				LocationType = GetLocationTypeString(trainMovement.LocationType),
 				TrainOrigin = trainMovement.TrainOrigin,
 				TrainDestination = trainMovement.TrainDestination,
 				ScheduledArrival = trainMovement.ScheduledArrival,
@@ -20,7 +20,27 @@ namespace irish_railways_api.Endpoints.TrainMovements.Adapters {
 				Departure = trainMovement.Departure,
 				AutoArrival = trainMovement.AutoArrival,
 				AutoDepart = trainMovement.AutoDepart,
-				StopType = trainMovement.StopType
+				StopType = GetStopType(trainMovement.StopType)
+			};
+		}
+
+		private static string GetLocationTypeString(string locationType) {
+			return locationType switch
+			{
+				"S" => "Stop",
+				"O" => "Origin",
+				"D" => "Destination",
+				"T" => "Timing",
+				_ => locationType,
+			};
+		}
+
+		private static string GetStopType(string stopType) {
+			return stopType switch
+			{
+				"C" => "Current",
+				"N" => "Next",
+				_ => stopType
 			};
 		}
 	}
