@@ -8,7 +8,7 @@ namespace irish_railways_api.Endpoints.StationDetails.Models {
 
 		public string TrainCode { get; set; }
 
-		public string Traindate { get; set; }
+		public string TrainDate { get; set; }
 
 		public string Origin { get; set; }
 

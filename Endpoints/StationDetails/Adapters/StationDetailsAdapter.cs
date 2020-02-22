@@ -16,7 +16,7 @@ namespace irish_railways_api.Endpoints.StationDetails.Adapters {
 				ScheduledArrival = stationData.Scharrival,
 				ExpectedDeparture = stationData.Expdepart,
 				ExpectedArrival = stationData.Exparrival,
-				Traindate = stationData.Traindate,
+				TrainDate = stationData.Traindate,
 				OriginTime = stationData.Origintime,
 				TrainType = stationData.Traintype,
 				LocationType = GetLocationTypeString(stationData.Locationtype),
