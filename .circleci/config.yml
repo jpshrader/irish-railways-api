@@ -32,4 +32,4 @@ jobs:
           command: dotnet.exe test
 
       - store_artifacts:
-          path: .\bin\Release\netcoreapp3.0\win10-x64\publish\irish-railways-api.exe
+          path: .\bin\Release\netcoreapp3.1\win10-x64\publish\irish-railways-api.exe
