@@ -19,4 +19,3 @@ In order to hit the local api, navigate to: `http://localhost:5000/`
 
 In order to hit swagger on the local api, navigate to: `http://localhost:5000/swagger/ui/index.html#/`
  * The Json payload can be found by navigating to: `http://localhost:5000/swagger/v1/swagger.json`
-
