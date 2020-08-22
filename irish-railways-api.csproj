@@ -6,9 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove=".circleci\**" />
     <Compile Remove="irish-railways-api.test\**" />
+    <Content Remove=".circleci\**" />
     <Content Remove="irish-railways-api.test\**" />
+    <EmbeddedResource Remove=".circleci\**" />
     <EmbeddedResource Remove="irish-railways-api.test\**" />
+    <None Remove=".circleci\**" />
     <None Remove="irish-railways-api.test\**" />
   </ItemGroup>
 
@@ -29,7 +33,6 @@
 
   <ItemGroup>
     <None Include=".azurepipelines\build.yml" />
-    <None Include=".circleci\config.yml" />
   </ItemGroup>
 
 </Project>

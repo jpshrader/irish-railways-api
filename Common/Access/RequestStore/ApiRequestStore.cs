@@ -18,7 +18,7 @@ namespace irish_railways_api.Common.Access.RequestStore {
 				if (!entry.IsExpired(storeRetentionLimit)) {
 					return entry.Item as IEnumerable<T>;
 				} else {
-					apiRequestStore.Remove(uri, out var value);
+					apiRequestStore.Remove(uri, out _);
 				}
 			}
 

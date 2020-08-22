@@ -2,6 +2,7 @@
 using irish_railways_api.EntryPoint;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Xml;
 
@@ -17,13 +18,13 @@ namespace irish_railways_api.Common.Access {
 
 			if (response.IsSuccessStatusCode) {
 				var serialiser = XmlSerialiserFactory.GetXmlSerialiser<T>();
-
 				using var reader = XmlReader.Create(response.Content.ReadAsStreamAsync().Result);
 				var result = ((IXmlNode<T>)serialiser.Deserialize(reader)).Items;
 
-				ApiRequestStoreSession.Store.Save(uri, result as object[]);
+				if (result != null)
+					ApiRequestStoreSession.Store.Save(uri, result as object[]);
 
-				return result;
+				return result ?? Enumerable.Empty<T>();
 			}
 
 			throw new ApiErrorException(response.StatusCode, response.Content.ReadAsStringAsync().Result);

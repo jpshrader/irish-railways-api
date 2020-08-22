@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace irish_railways_api.Common.Resources {
+﻿namespace irish_railways_api.Common.Resources {
 	public class HateoasLink {
 		public const string SELF = "self";
 		public const string SELF_DETAILED = "self_detailed";
@@ -22,20 +20,17 @@ namespace irish_railways_api.Common.Resources {
 		}
 
 		private static string SpliceArgsIntoRoute(string href, params string[] routeArgs) {
-			if (routeArgs.Length == 0)
-				return href;
+			for (var i = 0; i < routeArgs.Length; i++)
+				href = href.Replace(GetHrefSegmentToReplace(href), routeArgs[i]);
 
-			var splicedHref = "";
-			foreach (var arg in routeArgs) {
-				var nextRouteVar = href.IndexOf('}') + 1;
-				var isolatedArgString = href.Substring(0, nextRouteVar);
-				splicedHref = Regex.Replace(isolatedArgString, "{.*}", arg);
+			return href;
+		}
 
-				if (nextRouteVar != href.Length)
-					splicedHref += href.Substring(nextRouteVar, href.Length - nextRouteVar);
-			}
+		private static string GetHrefSegmentToReplace(string href) {
+			var openBrace = href.IndexOf('{');
+			var closedBrace = href.IndexOf('}') + 1;
 
-			return splicedHref;
+			return href[openBrace..closedBrace];
 		}
 	}
 }

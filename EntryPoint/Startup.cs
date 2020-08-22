@@ -55,8 +55,8 @@ namespace irish_railways_api.EntryPoint {
 			});
 
 			var cacheConfig = Configuration.GetSection("Caching");
-			ApiRequestStoreSession.isEnabled = cacheConfig.GetValue<bool>("IsEnabled");
-			ApiRequestStoreSession.RetentionPolicy = cacheConfig.GetValue<int>("RetentionPolicy");
+			ApiRequestStoreSession.IsEnabled = cacheConfig.GetValue<bool>(nameof(ApiRequestStoreSession.IsEnabled));
+			ApiRequestStoreSession.RetentionPolicy = cacheConfig.GetValue<int>(nameof(ApiRequestStoreSession.RetentionPolicy));
 		}
 	}
 }
