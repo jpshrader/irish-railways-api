@@ -48,7 +48,7 @@ namespace irish_railways_api.Endpoints.Trains.Adapters {
 				return 0;
 
 			var startOfLateMessage = destination.IndexOf('(') + 1;
-			destination = destination.Substring(startOfLateMessage, destination.IndexOf("min") - startOfLateMessage);
+			destination = destination[startOfLateMessage..destination.IndexOf("min")];
 
 			var isInt = int.TryParse(destination.Trim(), out var delta);
 			return isInt ? delta : 0;
