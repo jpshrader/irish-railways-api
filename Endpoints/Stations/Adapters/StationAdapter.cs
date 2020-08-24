@@ -10,7 +10,7 @@ namespace irish_railways_api.Endpoints.Stations.Adapters {
 			return new StationResource {
 				Id = station.StationId,
 				Name = station.StationDesc,
-				Code = station.StationCode,
+				Code = station.StationCode?.Trim(),
 				Alias = station.StationAlias,
 				Latitude = station.StationLatitude,
 				Links = new HateoasLink[] {
