@@ -53,7 +53,7 @@ namespace irish_railways_api.EntryPoint {
 			var swaggerUrlPrefix = isDev ? string.Empty : "/railways-api";
 			app.UseSwagger();
 			app.UseSwaggerUI(c => {
-				c.RoutePrefix = string.Empty;
+				c.RoutePrefix = "swagger";
 				c.SwaggerEndpoint($"{swaggerUrlPrefix}/swagger/v1/swagger.json", "Irish Railways Api");
 			});
 
