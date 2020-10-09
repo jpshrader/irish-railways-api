@@ -29,14 +29,15 @@ namespace irish_railways_api.EntryPoint {
 				c.SwaggerDoc("v1", new OpenApiInfo {
 					Version = "v1",
 					Title = "Irish Railways Api",
-					Description = "REST Api for pulling various pieces of information from the Irish Realtime Railway Api",
+					Description = "REST Api for pulling various pieces of information from the Irish Realtime Railway Api"
 				});
 			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-			if (env.IsDevelopment()) {
+			var isDev = env.IsDevelopment();
+			if (isDev) {
 				app.UseDeveloperExceptionPage();
 			}
 
@@ -48,10 +49,12 @@ namespace irish_railways_api.EntryPoint {
 				endpoints.MapControllers();
 			});
 			app.UseStaticFiles();
+
+			var swaggerUrlPrefix = isDev ? string.Empty : "/railways-api";
 			app.UseSwagger();
 			app.UseSwaggerUI(c => {
-				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Irish Railways Api");
 				c.RoutePrefix = string.Empty;
+				c.SwaggerEndpoint($"{swaggerUrlPrefix}/swagger/v1/swagger.json", "Irish Railways Api");
 			});
 
 			var cacheConfig = Configuration.GetSection("Caching");
