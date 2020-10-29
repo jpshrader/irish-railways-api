@@ -37,9 +37,8 @@ namespace irish_railways_api.EntryPoint {
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
 			var isDev = env.IsDevelopment();
-			if (isDev) {
+			if (isDev)
 				app.UseDeveloperExceptionPage();
-			}
 
 			app.UseHttpsRedirection();
 			app.UseRouting();
