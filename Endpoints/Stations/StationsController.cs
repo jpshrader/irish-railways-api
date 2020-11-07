@@ -1,4 +1,5 @@
-﻿using irish_railways_api.Common.Resources;
+﻿using irish_railways_api.Common;
+using irish_railways_api.Common.Resources;
 using irish_railways_api.Endpoints.Stations.Models;
 using irish_railways_api.Endpoints.Stations.Services;
 using Microsoft.AspNetCore.Http;
@@ -6,8 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace irish_railways_api.Controllers.Stations {
 	[ApiController]
+	[ApiVersion1]
 	public class StationsController : ControllerBase {
-		public const string ROUTE = "/api/stations";
+		public const string ROUTE = ApiConstants.BASE_URL + "/stations";
 		public const string ROUTE_SINGLE = ROUTE + "/{stationName}";
 
 		private readonly StationsService stationsService = new StationsService();

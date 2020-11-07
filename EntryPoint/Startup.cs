@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,12 +19,18 @@ namespace irish_railways_api.EntryPoint {
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public static void ConfigureServices(IServiceCollection services) {
 			services.AddControllers();
-
 			services.AddCors(o => o.AddPolicy(CORS_POLICY, builder => {
 				builder.AllowAnyOrigin()
 					   .AllowAnyMethod()
 					   .AllowAnyHeader();
 			}));
+
+			services.AddApiVersioning(config =>
+			{
+				config.DefaultApiVersion = new ApiVersion(1, 0);
+				config.AssumeDefaultVersionWhenUnspecified = true;
+				config.ReportApiVersions = true;
+			});
 
 			services.AddSwaggerGen(c => {
 				c.SwaggerDoc("v1", new OpenApiInfo {
