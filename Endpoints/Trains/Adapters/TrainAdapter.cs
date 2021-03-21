@@ -1,6 +1,7 @@
 ﻿using irish_railways_api.Common.Resources;
 using irish_railways_api.Controllers.Trains;
 using irish_railways_api.Controllers.Trains.Models;
+using irish_railways_api.Endpoints.TrainMovements;
 
 namespace irish_railways_api.Endpoints.Trains.Adapters {
 	public class TrainAdapter : ITrainAdapter {
@@ -19,7 +20,8 @@ namespace irish_railways_api.Endpoints.Trains.Adapters {
 				Message = GetContextFromMessage(train.PublicMessage),
 				MinutesLate = GetTimeDeltaFromMessage(train.PublicMessage),
 				Links = new HateoasLink[] {
-					HateoasLink.BuildGetLink(TrainsController.ROUTE_SINGLE, HateoasLink.SELF, apiVersion, train.TrainCode)
+					HateoasLink.BuildGetLink(TrainsController.ROUTE_SINGLE, HateoasLink.SELF, apiVersion, train.TrainCode),
+					HateoasLink.BuildGetLink(TrainMovementsController.ROUTE, HateoasLink.SELF_DETAILED, apiVersion, train.TrainCode)
 				}
 			};
 		}
