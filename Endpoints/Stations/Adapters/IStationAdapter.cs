@@ -3,6 +3,6 @@ using irish_railways_api.Models;
 
 namespace irish_railways_api.Endpoints.Stations.Adapters {
 	public interface IStationAdapter {
-		StationResource Adapt(Station station);
+		StationResource Adapt(Station station, string apiVersion);
 	}
 }

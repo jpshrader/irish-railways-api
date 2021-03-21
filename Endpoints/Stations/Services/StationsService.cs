@@ -1,10 +1,10 @@
 ﻿using irish_railways_api.Common.Resources;
 using irish_railways_api.Controllers.Stations;
-using irish_railways_api.Data.Stations;
 using irish_railways_api.Endpoints.Stations.Adapters;
 using irish_railways_api.Endpoints.Stations.Data;
 using irish_railways_api.Endpoints.Stations.Models;
 using irish_railways_api.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,36 +13,34 @@ namespace irish_railways_api.Endpoints.Stations.Services {
 		private readonly IStationRetriever stationRetriever;
 		private readonly IStationAdapter stationAdapter;
 
-		public StationsService() : this(new StationRetriever(), new StationAdapter()) { }
-
 		public StationsService(IStationRetriever stationRetriever, IStationAdapter stationAdapter) {
 			this.stationRetriever = stationRetriever;
 			this.stationAdapter = stationAdapter;
 		}
 
-		public ResourceList<StationResource> GetStations() {
+		public ResourceList<StationResource> GetStations(string apiVersion) {
 			return new ResourceList<StationResource> {
-				Resources = GetStationResources(stationRetriever.GetStations()),
+				Resources = GetStationResources(stationRetriever.GetStations(), apiVersion),
 				Links = new HateoasLink[] {
-					HateoasLink.BuildGetLink(StationsController.ROUTE, HateoasLink.SELF)
+					HateoasLink.BuildGetLink(StationsController.ROUTE, HateoasLink.SELF, apiVersion)
 				}
 			};
 		}
 
-		public StationResource GetStation(string stationName) {
-			var station = stationRetriever.GetStations().FirstOrDefault(s => s.StationDesc == stationName);
+		public StationResource GetStation(string stationName, string apiVersion) {
+			var station = stationRetriever.GetStations().FirstOrDefault(s => s.StationDesc.Equals(stationName, StringComparison.OrdinalIgnoreCase));
 
 			if (station == null)
 				return null;
 
-			return stationAdapter.Adapt(station);
+			return stationAdapter.Adapt(station, apiVersion);
 		}
 
-		private IEnumerable<StationResource> GetStationResources(IEnumerable<Station> stations) {
+		private IEnumerable<StationResource> GetStationResources(IEnumerable<Station> stations, string apiVersion) {
 			if (stations == null)
 				return Enumerable.Empty<StationResource>();
 
-			return stations.Select(stationAdapter.Adapt).OrderBy(s => s.Name);
+			return stations.Select(s => stationAdapter.Adapt(s, apiVersion)).OrderBy(s => s.Name);
 		}
 	}
 }

@@ -2,6 +2,6 @@
 
 namespace irish_railways_api.Endpoints.StationDetails.Adapters {
 	public interface IStationDetailsAdapter {
-		StationDetailsResource Adapt(StationData stationData);
+		StationDetailsResource Adapt(StationDetail stationDetails);
 	}
 }

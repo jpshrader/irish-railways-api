@@ -6,7 +6,7 @@ namespace irish_railways_api.Endpoints.Trains.Adapters {
 	public class TrainAdapter : ITrainAdapter {
 		private const string API_NEWLINE = "\\n";
 
-		public TrainResource Adapt(Train train) {
+		public TrainResource Adapt(Train train, string apiVersion) {
 			return new TrainResource {
 				Code = train.TrainCode,
 				Status = GetTrainStatus(train.TrainStatus),
@@ -19,21 +19,21 @@ namespace irish_railways_api.Endpoints.Trains.Adapters {
 				Message = GetContextFromMessage(train.PublicMessage),
 				MinutesLate = GetTimeDeltaFromMessage(train.PublicMessage),
 				Links = new HateoasLink[] {
-					HateoasLink.BuildGetLink(TrainsController.ROUTE_SINGLE, HateoasLink.SELF, routeArgs: train.TrainCode)
+					HateoasLink.BuildGetLink(TrainsController.ROUTE_SINGLE, HateoasLink.SELF, apiVersion, train.TrainCode)
 				}
 			};
 		}
 
 		private static string GetOriginStationFromMessage(string publicMessage) {
 			var origin = publicMessage.Split(API_NEWLINE)[1];
-			origin = origin.Substring(origin.IndexOf("-") + 1);
+			origin = origin[(origin.IndexOf("-") + 1)..];
 
 			return origin.Substring(0, origin.IndexOf("to ")).Trim();
 		}
 
 		private static string GetDestinationFromMessage(string publicMessage) {
 			var destination = publicMessage.Split(API_NEWLINE)[1];
-			destination = destination.Substring(destination.LastIndexOf("to ") + 3);
+			destination = destination[(destination.LastIndexOf("to ") + 3)..];
 
 			if (destination.Contains('('))
 				destination = destination.Substring(0, destination.IndexOf('('));
@@ -55,7 +55,7 @@ namespace irish_railways_api.Endpoints.Trains.Adapters {
 		}
 
 		private static string GetContextFromMessage(string publicMessage) {
-			return publicMessage.Substring(publicMessage.LastIndexOf(API_NEWLINE) + API_NEWLINE.Length).Trim();
+			return publicMessage[(publicMessage.LastIndexOf(API_NEWLINE) + API_NEWLINE.Length)..].Trim();
 		}
 
 		private static string GetTrainStatus(string status) {

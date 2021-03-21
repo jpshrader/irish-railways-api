@@ -4,8 +4,8 @@ using System.Xml.Serialization;
 
 namespace irish_railways_api.Endpoints.StationDetails.Data {
 	[XmlRoot("ArrayOfObjStationData", Namespace = "http://api.irishrail.ie/realtime/")]
-	public class StationDataList : IXmlNode<StationData> {
+	public class StationDetailsList : IXmlNode<StationDetail> {
 		[XmlElement("objStationData")]
-		public StationData[] Items { get; set; }
+		public StationDetail[] Items { get; set; }
 	}
 }

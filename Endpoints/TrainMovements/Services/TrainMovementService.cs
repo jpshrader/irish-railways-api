@@ -11,19 +11,17 @@ namespace irish_railways_api.Endpoints.TrainMovements.Services {
 		private readonly ITrainMovementRetriever movementRetriever;
 		private readonly ITrainMovementAdapter trainMovementAdapter;
 
-		public TrainMovementService() : this(new TrainMovementRetriever(), new TrainMovementAdapter()) { }
-
 		public TrainMovementService(ITrainMovementRetriever movementRetriever, ITrainMovementAdapter trainMovementAdapter) {
 			this.movementRetriever = movementRetriever;
 			this.trainMovementAdapter = trainMovementAdapter;
 		}
 
-		public ResourceList<TrainMovementResource> GetTrainMovements(string trainCode) {
+		public ResourceList<TrainMovementResource> GetTrainMovements(string trainCode, string apiVersion) {
 			return new ResourceList<TrainMovementResource> {
 				Resources = GetTrainMovementResources(movementRetriever.GetTrainMovements(trainCode)),
 				Links = new HateoasLink[] {
-					HateoasLink.BuildGetLink(TrainMovementsController.ROUTE, HateoasLink.SELF, routeArgs: trainCode),
-					HateoasLink.BuildGetLink(TrainsController.ROUTE_SINGLE, "train", routeArgs: trainCode)
+					HateoasLink.BuildGetLink(TrainMovementsController.ROUTE, HateoasLink.SELF, apiVersion, trainCode),
+					HateoasLink.BuildGetLink(TrainsController.ROUTE_SINGLE, "train", apiVersion, trainCode)
 				}
 			};
 		}

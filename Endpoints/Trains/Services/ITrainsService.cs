@@ -3,8 +3,8 @@ using irish_railways_api.Controllers.Trains.Models;
 
 namespace irish_railways_api.Endpoints.Trains.Services {
 	public interface ITrainsService {
-		ResourceList<TrainResource> GetTrains();
+		ResourceList<TrainResource> GetTrains(string apiVersion);
 
-		TrainResource GetTrain(string trainCode);
+		TrainResource GetTrain(string trainCode, string apiVersion);
 	}
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace irish_railways_api.Endpoints.StationDetails.Data {
-	public interface IStationDataRetriever {
-		IEnumerable<StationData> GetStationData(string stationId);
+	public interface IStationDetailsRetriever {
+		IEnumerable<StationDetail> GetStationData(string stationId);
 	}
 }

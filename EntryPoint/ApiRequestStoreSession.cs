@@ -3,7 +3,7 @@ using System;
 
 namespace irish_railways_api.EntryPoint {
 	public static class ApiRequestStoreSession {
-		private static readonly Lazy<ApiRequestStore> instance = new Lazy<ApiRequestStore>(() => new ApiRequestStore(storeRetentionLimit: RetentionPolicy), isThreadSafe: true);
+		private static readonly Lazy<ApiRequestStore> instance = new (() => new ApiRequestStore(storeRetentionLimit: RetentionPolicy), isThreadSafe: true);
 
 		public static bool IsEnabled { get; set; }
 

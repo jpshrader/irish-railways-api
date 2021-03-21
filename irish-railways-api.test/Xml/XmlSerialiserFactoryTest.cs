@@ -1,14 +1,13 @@
 ﻿using irish_railways_api.Common.Xml;
 using irish_railways_api.Controllers.Trains.Models;
 using irish_railways_api.Models;
-using NUnit.Framework;
 using System.IO;
 using System.Text;
+using Xunit;
 
 namespace irish_railways_api.test.Xml {
-	[TestFixture]
 	public class XmlSerialiserFactoryTest {
-		[Test]
+		[Fact]
 		public void XmlSerializerFactory_GetStationSerialiser_ReturnsStationList() {
 			var stationsXml = @"<ArrayOfObjStation xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns=""http://api.irishrail.ie/realtime/"">
                                     <objStation>
@@ -24,11 +23,11 @@ namespace irish_railways_api.test.Xml {
 			var result = DeserialiseXml<Station>(stationsXml);
 			var stationResult = result.Items[0];
 
-			Assert.AreEqual(1, result.Items.Length);
-			Assert.AreEqual("Belfast", stationResult.StationDesc);
+			Assert.Single(result.Items);
+			Assert.Equal("Belfast", stationResult.StationDesc);
 		}
 
-		[Test]
+		[Fact]
 		public void XmlSerializerFactory_GetTrainSerialiser_ReturnsTrainList() {
 			var trainsXml = @"<ArrayOfObjTrainPositions  xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns=""http://api.irishrail.ie/realtime/"">
                                     <objTrainPositions>
@@ -45,8 +44,8 @@ namespace irish_railways_api.test.Xml {
 			var result = DeserialiseXml<Train>(trainsXml);
 			var trainList = result.Items[0];
 
-			Assert.AreEqual(1, result.Items.Length);
-			Assert.AreEqual("To Cork", trainList.Direction);
+			Assert.Single(result.Items);
+			Assert.Equal("To Cork", trainList.Direction);
 		}
 
 		private static IXmlNode<T> DeserialiseXml<T>(string xml) {

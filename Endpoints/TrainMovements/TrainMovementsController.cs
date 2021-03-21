@@ -12,13 +12,17 @@ namespace irish_railways_api.Endpoints.TrainMovements {
 	public class TrainMovementsController : ControllerBase {
 		public const string ROUTE = TrainsController.ROUTE_SINGLE + "/movements";
 
-		private readonly ITrainMovementService movementService = new TrainMovementService();
+		private readonly ITrainMovementService trainMovementService;
+
+		public TrainMovementsController(ITrainMovementService trainMovementService) {
+			this.trainMovementService = trainMovementService;
+		}
 
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResourceList<TrainMovementResource>))]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[HttpGet(ROUTE)]
 		public IActionResult GetTrainMovements(string trainCode) {
-			var result = movementService.GetTrainMovements(trainCode);
+			var result = trainMovementService.GetTrainMovements(trainCode, ApiVersion1.VERSION);
 
 			if (result == null)
 				return NotFound();

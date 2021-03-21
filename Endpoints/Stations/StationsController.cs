@@ -12,12 +12,16 @@ namespace irish_railways_api.Controllers.Stations {
 		public const string ROUTE = ApiConstants.BASE_URL + "/stations";
 		public const string ROUTE_SINGLE = ROUTE + "/{stationName}";
 
-		private readonly StationsService stationsService = new StationsService();
+		private readonly IStationsService stationsService;
+
+		public StationsController(IStationsService stationsService) {
+			this.stationsService = stationsService;
+		}
 
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResourceList<StationResource>))]
 		[HttpGet(ROUTE)]
 		public IActionResult GetStations() {
-			var result = stationsService.GetStations();
+			var result = stationsService.GetStations(ApiVersion1.VERSION);
 
 			return Ok(result);
 		}
@@ -26,7 +30,7 @@ namespace irish_railways_api.Controllers.Stations {
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[HttpGet(ROUTE_SINGLE)]
 		public IActionResult GetStations(string stationName) {
-			var result = stationsService.GetStation(stationName);
+			var result = stationsService.GetStation(stationName, ApiVersion1.VERSION);
 
 			if (result == null)
 				return NotFound();

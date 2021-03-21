@@ -2,7 +2,7 @@
 
 namespace irish_railways_api.Endpoints.StationDetails.Adapters {
 	public class StationDetailsAdapter : IStationDetailsAdapter {
-		public StationDetailsResource Adapt(StationData stationData) {
+		public StationDetailsResource Adapt(StationDetail stationData) {
 			return new StationDetailsResource {
 				StationCode = stationData.Stationcode,
 				StationFullName = stationData.Stationfullname,

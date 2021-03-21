@@ -11,12 +11,16 @@ namespace irish_railways_api.Controllers.Trains {
 	public class TrainsController : ControllerBase {
 		public const string ROUTE = ApiConstants.BASE_URL + "/trains";
 		public const string ROUTE_SINGLE = ROUTE + "/{trainCode}";
-		private readonly TrainsService trainsService = new TrainsService();
+		private readonly ITrainsService trainsService;
+
+		public TrainsController(ITrainsService trainsService) {
+			this.trainsService = trainsService;
+		}
 
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResourceList<TrainResource>))]
 		[HttpGet(ROUTE)]
 		public IActionResult GetTrains() {
-			var result = trainsService.GetTrains();
+			var result = trainsService.GetTrains(ApiVersion1.VERSION);
 
 			return Ok(result);
 		}
@@ -25,7 +29,7 @@ namespace irish_railways_api.Controllers.Trains {
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[HttpGet(ROUTE_SINGLE)]
 		public IActionResult GetTrain(string trainCode) {
-			var result = trainsService.GetTrain(trainCode);
+			var result = trainsService.GetTrain(trainCode, ApiVersion1.VERSION);
 
 			if (result == null)
 				return NotFound();

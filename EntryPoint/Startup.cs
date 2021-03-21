@@ -1,3 +1,20 @@
+using irish_railways_api.Common.Access;
+using irish_railways_api.Controllers.Trains.Models;
+using irish_railways_api.Endpoints.StationDetails.Adapters;
+using irish_railways_api.Endpoints.StationDetails.Data;
+using irish_railways_api.Endpoints.StationDetails.Models;
+using irish_railways_api.Endpoints.StationDetails.Services;
+using irish_railways_api.Endpoints.Stations.Adapters;
+using irish_railways_api.Endpoints.Stations.Data;
+using irish_railways_api.Endpoints.Stations.Services;
+using irish_railways_api.Endpoints.TrainMovements.Adapters;
+using irish_railways_api.Endpoints.TrainMovements.Data;
+using irish_railways_api.Endpoints.TrainMovements.Models;
+using irish_railways_api.Endpoints.TrainMovements.Services;
+using irish_railways_api.Endpoints.Trains.Adapters;
+using irish_railways_api.Endpoints.Trains.Services;
+using irish_railways_api.Models;
+using irish_railways_api.Trains.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +33,6 @@ namespace irish_railways_api.EntryPoint {
 
 		public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
 		public static void ConfigureServices(IServiceCollection services) {
 			services.AddControllers();
 			services.AddCors(o => o.AddPolicy(CORS_POLICY, builder => {
@@ -39,9 +55,28 @@ namespace irish_railways_api.EntryPoint {
 					Description = "REST Api for pulling various pieces of information from the Irish Realtime Railway Api"
 				});
 			});
+
+			services.AddSingleton<IStationDetailsService, StationDetailsService>()
+				.AddSingleton<IStationDetailsRetriever, StationDetailsRetriever>()
+				.AddSingleton<IStationDetailsAdapter, StationDetailsAdapter>()
+				.AddSingleton<IApiAccess<StationDetail>, ApiAccess<StationDetail>>()
+
+				.AddSingleton<IStationsService, StationsService>()
+				.AddSingleton<IStationRetriever, StationRetriever>()
+				.AddSingleton<IStationAdapter, StationAdapter>()
+				.AddSingleton<IApiAccess<Station>, ApiAccess<Station>>()
+
+				.AddSingleton<ITrainMovementService, TrainMovementService>()
+				.AddSingleton<ITrainMovementRetriever, TrainMovementRetriever>()
+				.AddSingleton<ITrainMovementAdapter, TrainMovementAdapter>()
+				.AddSingleton<IApiAccess<TrainMovement>, ApiAccess<TrainMovement>>()
+
+				.AddSingleton<ITrainsService, TrainsService>()
+				.AddSingleton<ITrainsRetriever, TrainsRetriever>()
+				.AddSingleton<ITrainAdapter, TrainAdapter>()
+				.AddSingleton<IApiAccess<Train>, ApiAccess<Train>>();
 		}
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
 			var isDev = env.IsDevelopment();
 			if (isDev)

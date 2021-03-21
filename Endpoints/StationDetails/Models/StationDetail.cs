@@ -1,5 +1,5 @@
 ﻿namespace irish_railways_api.Endpoints.StationDetails.Models {
-	public class StationData {
+	public class StationDetail {
 		public string ServerTime { get; set; }
 
 		public string Traincode { get; set; }
