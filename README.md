@@ -1,8 +1,8 @@
 # Irish Railways REST Api
 
-This REST Api is based off of the [Irish Rail Realtime API](http://api.irishrail.ie/realtime).
-
 [![Build Status](https://dev.azure.com/johnshrader/irish-railways-api/_apis/build/status/jpshrader.irish-railways-api?branchName=main)](https://dev.azure.com/johnshrader/irish-railways-api/_build/latest?definitionId=1&branchName=main)
+
+This REST Api is based off of the [Irish Rail Realtime API](http://api.irishrail.ie/realtime).
 
 Future Enhancements:
 
